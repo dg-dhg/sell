@@ -1,16 +1,20 @@
 package com.dhg.sell.domain;
+
 import lombok.Data;
 
 @Data
-public class SellerInfo {
+public class ProductInfo {
 
-  private String id;
-  private String username;
-  private String password;
-  private String openid;
+  private String productId;
+  private String productName;
+  private double productPrice;
+  private long productStock;
+  private String productDescription;
+  private String productIcon;
+  private long productStatus;
+  private long categoryType;
   private java.sql.Timestamp createTime;
   private java.sql.Timestamp updateTime;
-
 
 
   public java.sql.Timestamp getCreateTime() {
@@ -20,6 +24,7 @@ public class SellerInfo {
   public void setCreateTime(java.sql.Timestamp createTime) {
     this.createTime = createTime;
   }
+
 
   public java.sql.Timestamp getUpdateTime() {
     return updateTime;
