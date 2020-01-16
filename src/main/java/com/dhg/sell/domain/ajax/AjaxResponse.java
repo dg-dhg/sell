@@ -1,16 +1,15 @@
 package com.dhg.sell.domain.ajax;
 
 import lombok.Builder;
+import lombok.Data;
 
 @Builder
+@Data
 public class AjaxResponse{
     private boolean ok;
     private String msg;
     private int code;
     private Object data;
-
-    private AjaxResponse() {
-    }
 
     public static AjaxResponse success() {
         /*Builder方法是静态的*/
