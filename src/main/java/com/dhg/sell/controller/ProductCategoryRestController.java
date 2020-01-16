@@ -2,9 +2,12 @@ package com.dhg.sell.controller;
 
 import com.dhg.sell.domain.ProductCategory;
 import com.dhg.sell.domain.ajax.AjaxResponse;
+import com.dhg.sell.service.impl.ProductCategoryService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+
+import javax.annotation.Resource;
 
 @Slf4j
 //@RestController
@@ -15,6 +18,9 @@ public class ProductCategoryRestController{
      * 资源/方法/格式
      * 增删改查（顺序）
      */
+    @Resource
+    ProductCategoryService productCategoryService;
+
 //    @RequestMapping(value = "/productCategory", method = RequestMethod.POST, produces = "application/json")
     @PostMapping("/productCategory")
     public @ResponseBody
