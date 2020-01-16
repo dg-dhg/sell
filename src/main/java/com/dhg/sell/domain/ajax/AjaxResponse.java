@@ -6,17 +6,17 @@ import lombok.Data;
 @Builder
 @Data
 public class AjaxResponse{
-    private boolean ok;
+    private boolean isOk;
     private String msg;
     private int code;
     private Object data;
 
     public static AjaxResponse success() {
         /*Builder方法是静态的*/
-        return AjaxResponse.builder().ok(true).code(200).msg("success").build();
+        return AjaxResponse.builder().isOk(true).code(200).msg("success").build();
     }
 
     public static AjaxResponse success(Object data) {
-        return AjaxResponse.builder().ok(true).code(200).msg("success").data(data).build();
+        return AjaxResponse.builder().isOk(true).code(200).msg("success").data(data).build();
     }
 }
