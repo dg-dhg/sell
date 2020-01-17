@@ -2,7 +2,7 @@ package com.dhg.sell.controller;
 
 import com.dhg.sell.domain.ProductCategory;
 import com.dhg.sell.domain.ajax.AjaxResponse;
-import com.dhg.sell.service.impl.ProductCategoryService;
+import com.dhg.sell.service.impl.ProductCategoryRestService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -19,7 +19,7 @@ public class ProductCategoryRestController{
      * 增删改查（顺序）
      */
     @Resource
-    ProductCategoryService productCategoryService;
+    ProductCategoryRestService productCategoryRestService;
 
 //    @RequestMapping(value = "/productCategory", method = RequestMethod.POST, produces = "application/json")
     @PostMapping("/productCategory")
@@ -27,6 +27,8 @@ public class ProductCategoryRestController{
     AjaxResponse saveCategory(@RequestBody ProductCategory category) {
         /*沿用c的格式*/
         log.info("saveCategory{}", category);
+        log.info("saveCategory:"+ productCategoryRestService.saveCategory(category));
+        log.info(productCategoryRestService.saveCategory(category).equals("Ok")?"hello world":"ok ok");
         return AjaxResponse.success(category);
     }
     /**这个占位符接收@pathVariable*/

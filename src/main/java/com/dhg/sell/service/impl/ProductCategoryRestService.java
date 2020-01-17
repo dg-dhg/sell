@@ -6,8 +6,8 @@ import org.springframework.stereotype.Service;
 
 @Service
 @Slf4j
-public class ProductCategoryService{
-    public String saveCategory(String category) {
+public class ProductCategoryRestService{
+    public String saveCategory(ProductCategory category) {
         /*沿用c的格式*/
         log.info("saveCategory{}", category);
         return "成功";
