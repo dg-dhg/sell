@@ -21,27 +21,37 @@ public class ProductCategoryRestController{
     @Resource
     ProductCategoryRestService productCategoryRestService;
 
+    /*@ApiOperation(value = "添加类目", notes = "一次添加一个", tags = "ProductCategory", httpMethod = "POST")
+    @ApiResponses({
+            @ApiResponse(code = 200, message = "success", response = ProductCategory.class),
+            @ApiResponse(code = 400, message = "badRequest", response = ProductCategory.class),
+            @ApiResponse(code = 500, message = "serverError", response = ProductCategory.class)
+    })*/
 //    @RequestMapping(value = "/productCategory", method = RequestMethod.POST, produces = "application/json")
     @PostMapping("/productCategory")
     public @ResponseBody
     AjaxResponse saveCategory(@RequestBody ProductCategory category) {
         /*沿用c的格式*/
         log.info("saveCategory{}", category);
-        log.info("saveCategory:"+ productCategoryRestService.saveCategory(category));
-        log.info(productCategoryRestService.saveCategory(category).equals("Ok")?"hello world":"ok ok");
+        log.info(productCategoryRestService.saveCategory(category).equals("Ok") ? "hello world" : "ok ok");
         return AjaxResponse.success(category);
     }
-    /**这个占位符接收@pathVariable*/
+
+    /**
+     * 这个占位符接收@pathVariable
+     */
+
 //    @RequestMapping(value = "/productCategory/{id}",method = RequestMethod.DELETE,produces = "application/json")
     @DeleteMapping("/productCategory/{id}")
     public @ResponseBody
     AjaxResponse removeCategory(@PathVariable Long id) {
         /*沿用c的格式*/
 
-        log.info("removeCategory{}",id);
+        log.info("removeCategory{}", id);
         return AjaxResponse.success(id);
     }
-//    @RequestMapping(value = "/productCategory/{id}",method = RequestMethod.PUT,produces = "application/json")
+
+    //    @RequestMapping(value = "/productCategory/{id}",method = RequestMethod.PUT,produces = "application/json")
     @PutMapping("/productCategory/{id}")
     public @ResponseBody
     AjaxResponse putCategory(@PathVariable Long id, @RequestBody ProductCategory category) {
@@ -49,12 +59,13 @@ public class ProductCategoryRestController{
         log.info(" putCategory{}", category);
         return AjaxResponse.success(category);
     }
-//    @RequestMapping(value = "/productCategory/{id}",method = RequestMethod.GET,produces = "application/json")
+
+    //    @RequestMapping(value = "/productCategory/{id}",method = RequestMethod.GET,produces = "application/json")
     @GetMapping("/productCategory/{id}")
     public @ResponseBody
     AjaxResponse getCategory(@PathVariable Long id) {
         /*无数据源，此处手动创建返回对象*/
-        ProductCategory category=ProductCategory.builder().categoryId(id).categoryName("youngBeach").categoryType(123L).build();
+        ProductCategory category = ProductCategory.builder().categoryId(id).categoryName("youngBeach").categoryType(123L).build();
         log.info("removeCategory{}", category);
         return AjaxResponse.success(category);
     }
