@@ -8,22 +8,3 @@ spring:
     date-format: yyyy-MM-dd HH:mm:ss
 server:
   port: 8080
-family:
-  #单引号和双引号的区别是，单会转义字符而双不会，在配置文件中属性的值以空格作为分隔符
-  family-name: "happy family"
-  father:
-    age: 18
-    name: dhg
-  mother:
-    alias:
-      - cute
-      - lovely
-  child:
-    name: kare
-    gender: male
-    hobby: dance
-    friends:
-      - name: bobo
-        gender: boy
-      - name: boay
-        gender: girl
