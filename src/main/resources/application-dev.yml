@@ -1,0 +1,6 @@
+#server:
+#  port: 2333
+#指定生产环境并不能传递
+spring:
+  profiles:
+    active: test

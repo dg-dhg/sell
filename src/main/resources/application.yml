@@ -6,5 +6,6 @@ spring:
     url: jdbc:mysql://localhost:3306/sell?useSSL=false&serverTimezone=UTC
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss
-server:
-  port: 8080
+    #生产环境指定的两张方式:在默认主配置文件中,打包后用命令行传参
+  profiles:
+    active: dev
