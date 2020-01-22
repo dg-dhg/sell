@@ -1,11 +1,20 @@
 spring:
   datasource:
     username: root
-    password: 12345678
+    #    username: ENC(h21B/9b3ubQkH4PyV3yIzQ==)
+    #    password: ENC(Li/kKbo3gzVCrKRNfwv2lSbxGWCXu46k)
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/sell?useSSL=false&serverTimezone=UTC
+    password: 12345678
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss
-    #生产环境指定的两张方式:在默认主配置文件中,打包后用命令行传参
-  profiles:
-    active: dev
+server:
+  port: 2345
+#测试jasypt
+jas:
+  test:
+    input: ENC(sB7rYNKtxBZbjnp0iWFTDQ==)
+    #安全框架
+jasypt:
+  encryptor:
+    password: 123

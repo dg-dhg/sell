@@ -57,8 +57,4 @@ public class ProductCategoryTest{
                 .andReturn();
         log.info(result.getResponse().getContentAsString());
     }
-    @Test
-    public void saveCategory(){
-       log.info("s e r v i c e 的 地 址 。 。 。"+service.toString());
-    }
 }
