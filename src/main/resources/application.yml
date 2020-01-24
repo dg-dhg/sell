@@ -1,11 +1,9 @@
 spring:
   datasource:
-    username: root
-    #    username: ENC(h21B/9b3ubQkH4PyV3yIzQ==)
-    #    password: ENC(Li/kKbo3gzVCrKRNfwv2lSbxGWCXu46k)
+    username: ENC(h21B/9b3ubQkH4PyV3yIzQ==)
+    password: ENC(Li/kKbo3gzVCrKRNfwv2lSbxGWCXu46k)
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/sell?useSSL=false&serverTimezone=UTC
-    password: 12345678
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss
 server:

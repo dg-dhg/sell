@@ -10,8 +10,7 @@ public class ProductCategoryRestService{
     public String saveCategory(ProductCategory category) {
         /*沿用c的格式*/
         log.info("saveCategory{}", category);
-        return "成功";
-    }
+        return "成功";    }
 
     public String removeCategory(Long id) {
         /*沿用c的格式*/

@@ -2,12 +2,13 @@ package com.dhg.sell.controller;
 
 import com.dhg.sell.domain.ProductCategory;
 import com.dhg.sell.domain.ajax.AjaxResponse;
-import com.dhg.sell.service.impl.ProductCategoryRestService;
+import com.dhg.sell.service.ProductCategoryService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 @Slf4j
 //@RestController
@@ -18,8 +19,8 @@ public class ProductCategoryRestController{
      * 资源/方法/格式
      * 增删改查（顺序）
      */
-    @Resource
-    ProductCategoryRestService productCategoryRestService;
+    @Resource(name = "productCategoryServiceImpl")
+    private ProductCategoryService service;
 
     /*@ApiOperation(value = "添加类目", notes = "一次添加一个", tags = "ProductCategory", httpMethod = "POST")
     @ApiResponses({
@@ -31,9 +32,7 @@ public class ProductCategoryRestController{
     @PostMapping("/productCategory")
     public @ResponseBody
     AjaxResponse saveCategory(@RequestBody ProductCategory category) {
-        /*沿用c的格式*/
-        log.info("saveCategory{}", category);
-        log.info(productCategoryRestService.saveCategory(category).equals("Ok") ? "hello world" : "ok ok");
+        service.insertCategory(category);
         return AjaxResponse.success(category);
     }
 
@@ -44,10 +43,8 @@ public class ProductCategoryRestController{
 //    @RequestMapping(value = "/productCategory/{id}",method = RequestMethod.DELETE,produces = "application/json")
     @DeleteMapping("/productCategory/{id}")
     public @ResponseBody
-    AjaxResponse removeCategory(@PathVariable Long id) {
-        /*沿用c的格式*/
-
-        log.info("removeCategory{}", id);
+    AjaxResponse deleteCategory(@PathVariable Long id) {
+        service.deleteCategoryById(id);
         return AjaxResponse.success(id);
     }
 
@@ -56,7 +53,7 @@ public class ProductCategoryRestController{
     public @ResponseBody
     AjaxResponse putCategory(@PathVariable Long id, @RequestBody ProductCategory category) {
         category.setCategoryId(id);
-        log.info(" putCategory{}", category);
+        service.updateCategory(category);
         return AjaxResponse.success(category);
     }
 
@@ -64,9 +61,14 @@ public class ProductCategoryRestController{
     @GetMapping("/productCategory/{id}")
     public @ResponseBody
     AjaxResponse getCategory(@PathVariable Long id) {
-        /*无数据源，此处手动创建返回对象*/
-        ProductCategory category = ProductCategory.builder().categoryId(id).categoryName("youngBeach").categoryType(123L).build();
-        log.info("removeCategory{}", category);
+        ProductCategory category = service.queryCategoryById(id);
         return AjaxResponse.success(category);
+    }
+
+    @GetMapping("/productCategory/all")
+    public  @ResponseBody
+    AjaxResponse getCategories() {
+        List<ProductCategory> categories= service.queryAllCategories();
+        return AjaxResponse.success(categories);
     }
 }

@@ -1,6 +1,5 @@
 package com.dhg.sell.domain;
 
-import com.dhg.sell.service.impl.ProductCategoryRestService;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -25,8 +24,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 @AutoConfigureMockMvc
 @SpringBootTest
 public class ProductCategoryTest{
-    @Resource
-    private ProductCategoryRestService service;
 
     @Resource
     private MockMvc mockMvc;

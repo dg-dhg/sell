@@ -15,17 +15,18 @@ import java.util.Date;
 public class OrderDetailTest{
 
     @Test
-    public void build(){
-        OrderDetail detail= OrderDetail.builder().detailId("123").productName("helloWorld").build();
+    public void build() {
+        OrderDetail detail = OrderDetail.builder().detailId("123").productName("helloWorld").build();
         System.out.println(detail);
 
     }
+
     @Test
-    public void convertToStamp(){
+    public void convertToStamp() {
         /*timestamp,日期类的子类*/
-        Date date=new Date();
-        long convert= date.getTime();
-        java.sql.Timestamp timestamp=new Timestamp(convert);
+        Date date = new Date();
+        long convert = date.getTime();
+        java.sql.Timestamp timestamp = new Timestamp(convert);
         log.error("以下是输出结果");
         System.out.println(timestamp);
 
