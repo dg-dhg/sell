@@ -1,13 +1,10 @@
-spring:
-  datasource:
-    username: ENC(h21B/9b3ubQkH4PyV3yIzQ==)
-    password: ENC(Li/kKbo3gzVCrKRNfwv2lSbxGWCXu46k)
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/sell?useSSL=false&serverTimezone=UTC
-  jackson:
-    date-format: yyyy-MM-dd HH:mm:ss
-server:
-  port: 2345
+#spring:
+#  datasource:
+#    username: ENC(h21B/9b3ubQkH4PyV3yIzQ==)
+#    password: ENC(Li/kKbo3gzVCrKRNfwv2lSbxGWCXu46k)
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+#    url: jdbc:mysql://localhost:3306/sell?useSSL=false&serverTimezone=UTC
+
 #测试jasypt
 jas:
   test:
@@ -16,3 +13,24 @@ jas:
 jasypt:
   encryptor:
     password: 123
+server:
+  port: 2345
+spring:
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+  #多数据源的Spring JDBC or JDBC方式
+  datasource:
+    #在多数据源的时候连接池的实际类型没有暴露，所以当数据源的底层是hikari
+    #url配置项需要写成jdbc-url（是连接池的基本类型）
+    primary:
+      username: ENC(h21B/9b3ubQkH4PyV3yIzQ==)
+      password: ENC(Li/kKbo3gzVCrKRNfwv2lSbxGWCXu46k)
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      jdbc-url: jdbc:mysql://localhost:3306/sell?useSSL=false&serverTimezone=UTC
+    secondary:
+      username: ENC(h21B/9b3ubQkH4PyV3yIzQ==)
+      password: ENC(Li/kKbo3gzVCrKRNfwv2lSbxGWCXu46k)
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      jdbc-url: jdbc:mysql://localhost:3306/ssm?useSSL=false&serverTimezone=UTC
+
+

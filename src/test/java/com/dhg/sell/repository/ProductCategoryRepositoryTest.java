@@ -5,6 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.annotation.Resource;
@@ -18,7 +19,10 @@ class ProductCategoryRepositoryTest{
     @Resource
     private ProductCategoryRepository repository;
 
-
+@Resource
+private JdbcTemplate primaryJdbcTemplate;
+@Resource
+private JdbcTemplate secondaryJdbcTemplate;
     @Test
     public void insertCategory() {
         ProductCategory category = ProductCategory.builder()
@@ -28,13 +32,13 @@ class ProductCategoryRepositoryTest{
                 .createTime(new Timestamp(System.currentTimeMillis()))
                 .updateTime(new Timestamp(System.currentTimeMillis()))
                 .build();
-        repository.insertCategory(category);
+        repository.insertCategory(category,primaryJdbcTemplate);
         System.out.println(category);
     }
 
     @Test
     public void deleteCategoryById() {
-        repository.deleteCategoryById(1L);
+        repository.deleteCategoryById(1L,primaryJdbcTemplate);
     }
 
     @Test
@@ -46,18 +50,18 @@ class ProductCategoryRepositoryTest{
                 .createTime(new Timestamp(System.currentTimeMillis()))
                 .updateTime(new Timestamp(System.currentTimeMillis()))
                 .build();
-        repository.updateCategory(category);
+        repository.updateCategory(category,primaryJdbcTemplate);
     }
 
     @Test
     public void queryCategoryById() {
-        ProductCategory category = repository.queryCategoryById(5L);
+        ProductCategory category = repository.queryCategoryById(5L,primaryJdbcTemplate);
         System.out.println(category);
     }
 
     @Test
     public void queryAllCategories() {
-        List<ProductCategory> categories = repository.queryAllCategories();
+        List<ProductCategory> categories = repository.queryAllCategories(primaryJdbcTemplate);
         for(ProductCategory each : categories) {
             System.out.println(each);
         }

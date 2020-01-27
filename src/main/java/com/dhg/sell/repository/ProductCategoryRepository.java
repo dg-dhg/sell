@@ -5,7 +5,6 @@ import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
-import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -14,15 +13,15 @@ import java.util.List;
  * 三个方法：update 数据将发生变更
  * queryForObject 用于查询单条记录
  * query 查询结果列表返回list
+ *
  * @author dhg
  * 2020/01/22
  */
+
 @Repository
 public class ProductCategoryRepository{
-    /*jdbc模板*/
-    @Resource
-    private JdbcTemplate jdbcTemplate;
-    public void insertCategory(ProductCategory category) {
+
+    public void insertCategory(ProductCategory category,JdbcTemplate jdbcTemplate) {
         jdbcTemplate.update
                 ("INSERT into product_category(category_id,category_name,category_type,create_time,update_time) values(?,?,?,?,?)"
                         , category.getCategoryId()
@@ -31,13 +30,15 @@ public class ProductCategoryRepository{
                         , category.getCreateTime()
                         , category.getUpdateTime());
     }
-    public void deleteCategoryById(Long id) {
+
+    public void deleteCategoryById(Long id,JdbcTemplate jdbcTemplate) {
         jdbcTemplate.update
                 ("delete  from  product_category where category_id=?"
                         , id
                 );
     }
-    public void updateCategory(ProductCategory category) {
+
+    public void updateCategory(ProductCategory category,JdbcTemplate jdbcTemplate) {
         jdbcTemplate.update(
                 "update product_category SET category_type=?,category_name=?,create_time=?,update_time=? where category_id=?"
                 , category.getCategoryType()
@@ -46,13 +47,15 @@ public class ProductCategoryRepository{
                 , category.getUpdateTime()
                 , category.getCategoryId());
     }
-    public ProductCategory queryCategoryById(Long id) {
+
+    public ProductCategory queryCategoryById(Long id,JdbcTemplate jdbcTemplate) {
         return jdbcTemplate.queryForObject(
                 "select * from product_category where category_id=?"
                 , new Object[]{id}
                 , new BeanPropertyRowMapper<>(ProductCategory.class));
     }
-    public List<ProductCategory> queryAllCategories() {
+
+    public List<ProductCategory> queryAllCategories(JdbcTemplate jdbcTemplate) {
         return jdbcTemplate.query(
                 "select * from product_category"
                 , new BeanPropertyRowMapper<>(ProductCategory.class));
